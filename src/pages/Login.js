@@ -2,8 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import * as emailValidation from 'email-validator';
-// import { flushSync } from 'react-dom';
-// import ACCOMPLISH_LOGIN from '../redux/reducers/user';
+import getCurrenciesThunk from '../redux/actions';
 
 export default function Login() {
   const [inputEmail, setInputEmail] = useState('');
@@ -32,6 +31,7 @@ export default function Login() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    dispatch(getCurrenciesThunk());
     dispatch(
       { type: 'ACCOMPLISH_LOGIN',
         payload: { email: inputEmail },
