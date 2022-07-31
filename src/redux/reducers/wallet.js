@@ -6,6 +6,7 @@ const INITIAL_STATE = {
 };
 
 const GET_CURRENCY = 'GET_CURRENCY';
+const ADD_EXPENSE = 'ADD_EXPENSE';
 
 const wallet = (state = INITIAL_STATE, action) => {
   switch (action.type) {
@@ -13,6 +14,11 @@ const wallet = (state = INITIAL_STATE, action) => {
     return {
       ...state,
       currencies: action.payload,
+    };
+  case ADD_EXPENSE:
+    return {
+      ...state,
+      expenses: [...state.expenses, action.payload],
     };
   default:
     return state;

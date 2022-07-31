@@ -1,23 +1,19 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
-// import getCurrenciesThunk from '../redux/actions';
+import { useSelector, useDispatch } from 'react-redux';
+import { getActualCurrency } from '../redux/actions';
 
 const theState = {
-  valor: '',
-  descricao: '',
-  moeda: '',
-  metodo: '',
-  categoria: '',
+  value: '',
+  description: '',
+  currency: '',
+  method: '',
+  tag: '',
+  id: 0,
 };
 
 export default function WalletForm() {
-  // const dispatch = useDispatch();
-  // useEffect(() => {
-  //   dispatch(getCurrenciesThunk());
-  // }, []);
-
   const { currencies } = useSelector((state) => state.wallet);
-  console.log(currencies);
+  const dispatch = useDispatch();
 
   const [currentState, setcurState] = useState(theState);
 
@@ -26,15 +22,33 @@ export default function WalletForm() {
     setcurState((prevState) => ({ ...prevState, [name]: value }));
   };
 
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const data = {
+      ...currentState,
+      id: currentState.id,
+    };
+    dispatch(getActualCurrency(data));
+    setcurState(() => ({
+      value: '',
+      description: '',
+      currency: '',
+      method: '',
+      tag: '',
+      id: currentState.id + 1,
+    }));
+    console.log(data);
+  };
+
   return (
-    <form>
+    <form onSubmit={ handleSubmit }>
       <label htmlFor="value-input">
         Valor:
         <input
           id="value-input"
-          name="valor"
+          name="value"
           data-testid="value-input"
-          value={ currentState.valor }
+          value={ currentState.value }
           onChange={ handleChange }
         />
       </label>
@@ -42,9 +56,9 @@ export default function WalletForm() {
         Descrição:
         <input
           id="description-input"
-          name="descricao"
+          name="description"
           data-testid="description-input"
-          value={ currentState.descricao }
+          value={ currentState.description }
           onChange={ handleChange }
         />
       </label>
@@ -52,9 +66,9 @@ export default function WalletForm() {
         Moeda:
         <select
           id="currency-input"
-          name="moeda"
+          name="currency"
           data-testid="currency-input"
-          value={ currentState.moeda }
+          value={ currentState.currency }
           onChange={ handleChange }
         >
           { currencies
@@ -71,9 +85,9 @@ export default function WalletForm() {
         Método de pagamento:
         <select
           id="method-input"
-          name="metodo"
+          name="method"
           data-testid="method-input"
-          value={ currentState.metodo }
+          value={ currentState.method }
           onChange={ handleChange }
         >
           <option value="credito">Cartão de crédito</option>
@@ -85,9 +99,9 @@ export default function WalletForm() {
         Categoria:
         <select
           id="tag-input"
-          name="categoria"
+          name="tag"
           data-testid="tag-input"
-          value={ currentState.categoria }
+          value={ currentState.tag }
           onChange={ handleChange }
         >
           <option value="alimentacao">Alimentação</option>
@@ -97,6 +111,11 @@ export default function WalletForm() {
           <option value="saude">Saúde</option>
         </select>
       </label>
+      <button
+        type="submit"
+      >
+        Adicionar despesa
+      </button>
     </form>
   );
 }

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import * as emailValidation from 'email-validator';
-import getCurrenciesThunk from '../redux/actions';
+import { getCurrenciesThunk } from '../redux/actions';
 
 export default function Login() {
   const [inputEmail, setInputEmail] = useState('');
