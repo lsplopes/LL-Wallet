@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { dltExpense } from '../redux/actions';
+import { dltExpense, editExpense } from '../redux/actions';
 
 export default function Table() {
   const { expenses } = useSelector((state) => state.wallet);
@@ -10,6 +10,11 @@ export default function Table() {
     const payload = expenses
       .filter((expense) => (parseInt(expense.id, 10) !== parseInt(target.id, 10)));
     dispatch(dltExpense(payload));
+  };
+
+  const handleEdit = ({ target }) => {
+    const payload = { idToEdit: target.id, editor: true };
+    dispatch(editExpense(payload));
   };
 
   const tableGenerator = () => {
@@ -36,6 +41,15 @@ export default function Table() {
           >
             Delete
           </button>
+          <button
+            type="button"
+            id={ expense.id }
+            onClick={ handleEdit }
+            data-testid="edit-btn"
+          >
+            Editar despesa
+          </button>
+
         </td>
       </tr>
     ));

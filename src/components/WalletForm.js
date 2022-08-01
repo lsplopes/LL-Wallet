@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getActualCurrency } from '../redux/actions';
+import { getActualCurrency, modifyExpense } from '../redux/actions';
 
 const USD = 'USD';
 const CARTAODECREDITO = 'Cartão de crédito';
@@ -16,7 +16,7 @@ const theState = {
 };
 
 export default function WalletForm() {
-  const { currencies } = useSelector((state) => state.wallet);
+  const { currencies, idToEdit, editor, expenses } = useSelector((state) => state.wallet);
   const dispatch = useDispatch();
 
   const [currentState, setcurState] = useState(theState);
@@ -28,19 +28,42 @@ export default function WalletForm() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const data = {
-      ...currentState,
-      id: currentState.id,
-    };
-    dispatch(getActualCurrency(data));
-    setcurState(() => ({
-      value: '',
-      description: '',
-      currency: USD,
-      method: CARTAODECREDITO,
-      tag: ALIMENTACAO,
-      id: currentState.id + 1,
-    }));
+    if (editor) {
+      const newExpenses = expenses
+        .map((expense) => (parseInt(expense.id, 10) === parseInt(idToEdit, 10)
+          ? ({
+            ...expense,
+            value: currentState.value,
+            description: currentState.description,
+            currency: currentState.currency,
+            method: currentState.method,
+            tag: currentState.tag,
+          })
+          : expense));
+      dispatch(modifyExpense(newExpenses));
+      setcurState(() => ({
+        value: '',
+        description: '',
+        currency: USD,
+        method: CARTAODECREDITO,
+        tag: ALIMENTACAO,
+        id: currentState.id,
+      }));
+    } else {
+      const data = {
+        ...currentState,
+        id: currentState.id,
+      };
+      dispatch(getActualCurrency(data));
+      setcurState(() => ({
+        value: '',
+        description: '',
+        currency: USD,
+        method: CARTAODECREDITO,
+        tag: ALIMENTACAO,
+        id: currentState.id + 1,
+      }));
+    }
   };
 
   return (
@@ -117,7 +140,7 @@ export default function WalletForm() {
       <button
         type="submit"
       >
-        Adicionar despesa
+        { editor ? 'Editar despesa' : 'Adicionar despesa'}
       </button>
     </form>
   );

@@ -8,6 +8,8 @@ const INITIAL_STATE = {
 const GET_CURRENCY = 'GET_CURRENCY';
 const ADD_EXPENSE = 'ADD_EXPENSE';
 const DLT_EXPENSE = 'DLT_EXPENSE';
+const EDIT_EXPENSE = 'EDIT_EXPENSE';
+const MODIFY_EXPENSE = 'MODIFY_EXPENSE';
 
 const wallet = (state = INITIAL_STATE, action) => {
   switch (action.type) {
@@ -24,6 +26,18 @@ const wallet = (state = INITIAL_STATE, action) => {
   case DLT_EXPENSE:
     return {
       ...state,
+      expenses: action.payload,
+    };
+  case EDIT_EXPENSE:
+    return {
+      ...state,
+      idToEdit: action.payload.idToEdit,
+      editor: action.payload.editor,
+    };
+  case MODIFY_EXPENSE:
+    return {
+      ...state,
+      editor: false,
       expenses: action.payload,
     };
   default:
