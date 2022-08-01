@@ -13,9 +13,10 @@ export const getActualCurrency = (data) => async (dispatch) => {
     ...data,
     exchangeRates: testing,
   };
-  console.log(payload);
   dispatch({
     type: 'ADD_EXPENSE',
     payload,
   });
 };
+
+export const dltExpense = (payload) => ({ type: 'DLT_EXPENSE', payload });

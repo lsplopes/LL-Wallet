@@ -1,8 +1,16 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { dltExpense } from '../redux/actions';
 
 export default function Table() {
   const { expenses } = useSelector((state) => state.wallet);
+  const dispatch = useDispatch();
+
+  const handleDlt = ({ target }) => {
+    const payload = expenses
+      .filter((expense) => (parseInt(expense.id, 10) !== parseInt(target.id, 10)));
+    dispatch(dltExpense(payload));
+  };
 
   const tableGenerator = () => {
     const TEN = 10;
@@ -19,6 +27,16 @@ export default function Table() {
       * parseFloat(expense.exchangeRates[(expense.currency)].ask, TEN)).toFixed(2)}
         </td>
         <td>Real</td>
+        <td>
+          <button
+            type="button"
+            id={ expense.id }
+            onClick={ handleDlt }
+            data-testid="delete-btn"
+          >
+            Delete
+          </button>
+        </td>
       </tr>
     ));
     return resultado;

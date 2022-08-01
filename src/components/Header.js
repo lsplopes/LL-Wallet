@@ -11,14 +11,13 @@ export default function Header() {
       .reduce((soma, atual) => soma
       + (parseFloat(atual.value, TEN)
       * parseFloat(atual.exchangeRates[(atual.currency)].ask, TEN)), 0).toFixed(2);
-    console.log(expenses);
     return resultado;
   };
 
   return (
     <div>
       <span data-testid="total-field">
-        { expenses.length === 0 ? 0 : totalCalculator() }
+        { expenses.length === 0 ? (0).toFixed(2) : totalCalculator() }
       </span>
       <span data-testid="header-currency-field">BRL</span>
       <span data-testid="email-field">{email}</span>
