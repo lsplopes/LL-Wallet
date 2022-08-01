@@ -37,7 +37,6 @@ export default function WalletForm() {
       tag: '',
       id: currentState.id + 1,
     }));
-    console.log(data);
   };
 
   return (
@@ -71,6 +70,7 @@ export default function WalletForm() {
           value={ currentState.currency }
           onChange={ handleChange }
         >
+          <option>--</option>
           { currencies
             .map((coin, index) => (
               <option
@@ -90,9 +90,10 @@ export default function WalletForm() {
           value={ currentState.method }
           onChange={ handleChange }
         >
-          <option value="credito">Cartão de crédito</option>
-          <option value="debito">Cartão de débito</option>
-          <option value="dinheiro">Dinheiro</option>
+          <option>--</option>
+          <option value="Cartão de crédito">Cartão de crédito</option>
+          <option value="Cartão de débito">Cartão de débito</option>
+          <option value="Dinheiro">Dinheiro</option>
         </select>
       </label>
       <label htmlFor="tag-input">
@@ -104,11 +105,12 @@ export default function WalletForm() {
           value={ currentState.tag }
           onChange={ handleChange }
         >
-          <option value="alimentacao">Alimentação</option>
-          <option value="lazer">Lazer</option>
-          <option value="trabalho">Trabalho</option>
-          <option value="transporte">Transporte</option>
-          <option value="saude">Saúde</option>
+          <option>--</option>
+          <option value="Alimentação">Alimentação</option>
+          <option value="Lazer">Lazer</option>
+          <option value="Trabalho">Trabalho</option>
+          <option value="Transporte">Transporte</option>
+          <option value="Saúde">Saúde</option>
         </select>
       </label>
       <button

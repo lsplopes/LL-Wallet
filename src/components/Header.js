@@ -9,8 +9,9 @@ export default function Header() {
     const TEN = 10;
     const resultado = expenses
       .reduce((soma, atual) => soma
-      + ((parseFloat(atual.value, TEN)
-      * parseFloat(atual.exchangeRates[atual.currency].ask))), 0).toFixed(2);
+      + (parseFloat(atual.value, TEN)
+      * parseFloat(atual.exchangeRates[(atual.currency)].ask, TEN)), 0).toFixed(2);
+    console.log(expenses);
     return resultado;
   };
 

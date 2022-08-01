@@ -8,11 +8,12 @@ export const getCurrenciesThunk = () => async (dispatch) => {
 export const getActualCurrency = (data) => async (dispatch) => {
   const response = await fetch('https://economia.awesomeapi.com.br/json/all');
   const nakedResponse = await response.json();
-  // const preparedResponse = nakedResponse[data.currency].ask;
+  const testing = await Promise.resolve(nakedResponse);
   const payload = {
     ...data,
-    exchangeRates: nakedResponse,
+    exchangeRates: testing,
   };
+  console.log(payload);
   dispatch({
     type: 'ADD_EXPENSE',
     payload,
