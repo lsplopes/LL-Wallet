@@ -2,12 +2,16 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getActualCurrency } from '../redux/actions';
 
+const USD = 'USD';
+const CARTAODECREDITO = 'Cartão de crédito';
+const ALIMENTACAO = 'Alimentação';
+
 const theState = {
   value: '',
   description: '',
-  currency: '',
-  method: '',
-  tag: '',
+  currency: USD,
+  method: CARTAODECREDITO,
+  tag: ALIMENTACAO,
   id: 0,
 };
 
@@ -32,9 +36,9 @@ export default function WalletForm() {
     setcurState(() => ({
       value: '',
       description: '',
-      currency: '',
-      method: '',
-      tag: '',
+      currency: USD,
+      method: CARTAODECREDITO,
+      tag: ALIMENTACAO,
       id: currentState.id + 1,
     }));
   };
@@ -70,7 +74,6 @@ export default function WalletForm() {
           value={ currentState.currency }
           onChange={ handleChange }
         >
-          <option>--</option>
           { currencies
             .map((coin, index) => (
               <option
@@ -90,8 +93,7 @@ export default function WalletForm() {
           value={ currentState.method }
           onChange={ handleChange }
         >
-          <option>--</option>
-          <option value="Cartão de crédito">Cartão de crédito</option>
+          <option value={ CARTAODECREDITO }>Cartão de crédito</option>
           <option value="Cartão de débito">Cartão de débito</option>
           <option value="Dinheiro">Dinheiro</option>
         </select>
@@ -105,8 +107,7 @@ export default function WalletForm() {
           value={ currentState.tag }
           onChange={ handleChange }
         >
-          <option>--</option>
-          <option value="Alimentação">Alimentação</option>
+          <option value={ ALIMENTACAO }>Alimentação</option>
           <option value="Lazer">Lazer</option>
           <option value="Trabalho">Trabalho</option>
           <option value="Transporte">Transporte</option>
