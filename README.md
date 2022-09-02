@@ -1,16 +1,6 @@
 # 🚧 README em construção 🚧
 
-<!-- Olá, Tryber!
+![image](https://user-images.githubusercontent.com/102384823/188204153-924b0fd2-8f2d-4b66-b870-aa0d53d22e43.png)
+![image](https://user-images.githubusercontent.com/102384823/188204268-1da69d80-97c4-4dca-9ae5-31d6343d226e.png)
+![image](https://user-images.githubusercontent.com/102384823/188204628-69130697-6b48-404c-9270-b228570727c9.png)
 
-Esse é apenas um arquivo inicial para o README do seu projeto.
-
-É essencial que você preencha esse documento por conta própria, ok?
-
-Não deixe de usar nossas dicas de escrita de README de projetos, e deixe sua criatividade brilhar!
-
-⚠️ IMPORTANTE: você precisa deixar nítido:
-- quais arquivos/pastas foram desenvolvidos por você; 
-- quais arquivos/pastas foram desenvolvidos por outra pessoa estudante;
-- quais arquivos/pastas foram desenvolvidos pela Trybe.
-
--->
