@@ -1,3 +1,22 @@
+PT-BR:
+# Bem-vindo ao meu aplicativo LL-Wallet
+
+Este é um aplicativo que usa uma API de câmbio para gerenciar gastos com diferentes moedas.
+
+Possui uma página de login "por segurança", e quando você estiver dentro do app, você colocar seus gastos com cada moeda corrente, o app irá consultar a API e converter seu valor.
+
+Este foi um projeto desenvolvido no Trybe Course, portanto o ESlint e o Cypress foram criados por esta escola.
+
+Este projeto foi feito usando Redux para o gerenciamento de estado global.
+
+Não houve estilização neste App.
+
+Obrigado por dar uma olhada neste repositório!
+
+Algumas fotos do aplicativo:
+
+EN-US:
+
 # Welcome to my LL-Wallet App
 
 This is a App that uses a coin currency API to manage spends with different coin currencies.
